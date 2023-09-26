@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seoul Time</title>
+    
+    <!-- Add the Google Fonts link here -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+		font-family: 'Quicksand', sans-serif;            text-align: center;
+            margin-top: 100px;
+            font-size: 2em;
+            color: #6c9b7d; /* Set font color to #6c9b7d */
+            background-color: #faf1f5; /* Set background color to #faf1f5 */
+        }
+    </style>
+</head>
+<body>
+    <div id="seoul-time"></div>
+
+    <script>
+        function updateSeoulTime() {
+            const optionsTime = {
+                timeZone: "Asia/Seoul",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true
+            };
+
+            const optionsDate = {
+                timeZone: "Asia/Seoul",
+                weekday: "long",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            };
+
+            // Create Date objects with the timezone set to Seoul for time and date
+            const time = new Date().toLocaleString("en-US", optionsTime);
+            const date = new Date().toLocaleString("en-US", optionsDate);
+
+            // Display the Seoul time and date in the desired format
+            document.getElementById("seoul-time").textContent = `${time} - ${date}`;
+        }
+
+        // Update the time immediately and then every second
+        updateSeoulTime();
+        setInterval(updateSeoulTime, 1000);
+    </script>
+</body>
+</html>
