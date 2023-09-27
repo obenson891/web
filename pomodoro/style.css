@@ -104,9 +104,9 @@ button:focus {
 .session-container {
   text-align: center;
 /*   display: inline-block; */
- /* border: 2px solid rgb(234,178,156); */
+ border: 2px solid rgb(171,171,135);
   padding: 10px;
- /*   border-radius: 10px;*/
+   border-radius: 10px;
   width: 48%;
 }
 
