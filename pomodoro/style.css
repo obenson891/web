@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap');
 
 /* General */
-
 body {
   font-family: 'Roboto Mono', monospace;
   color: #6c9b7d;
-
- // background-color: #c2e6e8;
+  /* background-color: #c2e6e8; */
+  font-size: 11px; /* Reduce the font size */
 }
 
 #root {
@@ -17,47 +16,41 @@ body {
 
 button,
 button:active {
-  background-color: rgb(223,148,157); 
+  background-color: rgb(223, 148, 157);
   border: none;
-  width: 42px;
-  height: 40px;
+  width: 28px; /* Reduce the button size */
+  height: 26px; /* Reduce the button size */
   border-radius: 100%;
   text-align: center;
-  box-shadow: 0.2em 0.2em rgb(210,105,118);
-  -webkit-box-shadow: 0.2em 0.2em rgb(210,105,118);
-  -moz-box-shadow: 0.2em 0.2em rgb(210,105,118);
+  box-shadow: 0.15em 0.15em rgb(210, 105, 118); /* Reduce the shadow */
 }
 
 button:focus {
   translate: 0.2em 0.2em;
-  box-shadow: 0.2em 0.2em rgb(210,105,118) inset;
-  -webkit-box-shadow: 0.2em 0.2em rgb(210,105,118) inset;
-  -moz-box-shadow: 0.2em 0.2em rgb(210,105,118) inset;
+  box-shadow: 0.15em 0.15em rgb(210, 105, 118) inset; /* Reduce the shadow */
 }
 
 /* Clock Body */
-
 .clock-container {
-  background-color: rgb(247,239,218); 
-  width: 350px;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 10px 10px rgb(171,171,135);
+  background-color: rgb(247, 239, 218);
+  width: 230px; /* Reduce the container width */
+  border-radius: 15px; /* Reduce the border radius */
+  padding: 20px; /* Reduce padding */
+  box-shadow: 7px 7px rgb(171, 171, 135); /* Reduce the shadow */
 }
 
 /* Display + Stop/Start/Reset Controls */
-
 #time-left {
-  font-size: 70px;
+  font-size: 50px; /* Reduce the font size */
   text-align: center;
-  background-color: rgb(227,187,189);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 3px 3px rgb(223,148,157) inset;
+  background-color: rgb(227, 187, 189);
+  padding: 14px; /* Reduce padding */
+  border-radius: 15px;
+  box-shadow: 2px 2px rgb(223, 148, 157) inset; /* Reduce the shadow */
 }
 
 #display-controls {
-  margin: 10px 0;
+  margin: 8px 0; /* Reduce margin */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,28 +58,27 @@ button:focus {
 }
 
 #timer-label {
-  font-size: 25px;
+  font-size: 18px; /* Reduce the font size */
   text-align: center;
   padding-top: 2px;
-  background-color: rgb(227,187,189);
+  background-color: rgb(227, 187, 189);
   border-radius: 10px;
-  height: 40px;
+  height: 30px; /* Reduce the height */
   flex: 2;
-  box-shadow: 3px 3px rgb(223,148,157) inset;
+  box-shadow: 2px 2px rgb(223, 148, 157) inset; /* Reduce the shadow */
 }
 
 #timer-ssr {
   flex: 1;
-  margin-left: 30px;
+  margin-left: 20px; /* Reduce margin */
   display: flex;
   justify-content: space-between;
   flex-start: end;
 }
 
 /* Timer Length Controls */
-
 .length-container {
-  margin-top: 20px;
+  margin-top: 14px; /* Reduce margin */
   display: flex;
   flex-direction: row;
 }
@@ -96,25 +88,25 @@ button:focus {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 140px;
-  height:60px;
+  width: 90px; /* Reduce the width */
+  height: 40px; /* Reduce the height */
 }
 
-.break-container, 
+.break-container,
 .session-container {
   text-align: center;
-/*   display: inline-block; */
- border: 2px solid rgb(171,171,135);
-  padding: 10px;
-   border-radius: 10px;
+  border: 2px solid rgb(171, 171, 135);
+  padding: 6px; /* Reduce padding */
+  border-radius: 10px;
   width: 48%;
 }
 
 .timer-length {
-  font-size: 2em;
+  font-size: 2.5em; /* Reduce the font size */
+
 }
 
 .break-container,
 .inc-arrow {
-  margin-right: 12px;
+  margin-right: 6px; /* Reduce margin */
 }
