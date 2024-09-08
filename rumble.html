@@ -73,8 +73,7 @@
     <!-- Rumble screen -->
     <div id="rumbleScreen" class="hidden">
         <div class="info" id="entrant"><strong>Entrant # 1:</strong> Click "Next" to start!</div>
-        <div class="info" id="thisRoundEliminated"><strong>Eliminated this round:</strong> None</div>
-        <div class="info" id="eliminator" class="hidden"></div>
+        <div class="info" id="eliminationStory" class="hidden"></div>
         <div class="info" id="ring"><strong>Wrestlers in the Ring:</strong> None</div>
         <button onclick="nextEntry()">Next</button>
         <div class="eliminated-list" id="eliminated"><strong>Eliminated Wrestlers:</strong> None</div>
@@ -147,6 +146,22 @@
             return array;
         }
 
+        function getRandomStory(wrestler, eliminator) {
+            const stories = [
+                `${wrestler} was thrown out of the ring after a fierce battle with ${eliminator}.`,
+                `${wrestler} got distracted and was unexpectedly eliminated by ${eliminator}.`,
+                `${wrestler} tried to sneak up on ${eliminator}, but ended up being tossed out instead.`,
+                `${wrestler} had a misstep, and ${eliminator} took advantage to eliminate them.`,
+                `${wrestler} was caught off guard and eliminated by the crafty ${eliminator}.`,
+                `${wrestler} was pushed off the top turnbuckle by ${eliminator}.`,
+                `${wrestler} nearly held on but was pushed off the apron by ${eliminator}.`,
+                `${wrestler} was caught in midair and dumped over the ropes by ${eliminator}.`,
+                `${wrestler} was hit by ${eliminator}'s finishing move and tossed out.`,
+                `${wrestler} was betrayed and eliminated by ${eliminator}.`
+            ];
+            return stories[Math.floor(Math.random() * stories.length)];
+        }
+
         function nextEntry() {
             if (isWinnerAnnounced) {
                 showStats();
@@ -164,15 +179,15 @@
                 if (ring.length > 2 && Math.random() > 0.5) {
                     const eliminatedWrestler = ring.splice(Math.floor(Math.random() * ring.length), 1)[0];
                     const eliminator = ring[Math.floor(Math.random() * ring.length)];
-                    eliminated.push({ wrestler: eliminatedWrestler, by: eliminator });
+                    const story = getRandomStory(eliminatedWrestler, eliminator);
+                    eliminated.push({ wrestler: eliminatedWrestler, by: eliminator, story });
+
                     eliminations[eliminator] += 1;
 
-                    document.getElementById("thisRoundEliminated").innerHTML = `<strong>Eliminated this round:</strong> <span class="wrestler-name">${eliminatedWrestler}</span>`;
-                    document.getElementById("eliminator").innerHTML = `<strong>Eliminated by:</strong> ${eliminator}`;
-                    document.getElementById("eliminator").classList.remove("hidden");
+                    document.getElementById("eliminationStory").innerHTML = `<p>${story}</p>`;
+                    document.getElementById("eliminationStory").classList.remove("hidden");
                 } else {
-                    document.getElementById("thisRoundEliminated").innerHTML = `<strong>Eliminated this round:</strong> None`;
-                    document.getElementById("eliminator").classList.add("hidden");
+                    document.getElementById("eliminationStory").classList.add("hidden");
                 }
 
                 document.getElementById("ring").innerHTML = `<strong>Wrestlers in the Ring:</strong> ${ring.join(", ")}`;
@@ -180,12 +195,12 @@
                 // Start eliminating wrestlers until only one remains
                 const eliminatedWrestler = ring.splice(Math.floor(Math.random() * ring.length), 1)[0];
                 const eliminator = ring[Math.floor(Math.random() * ring.length)];
-                eliminated.push({ wrestler: eliminatedWrestler, by: eliminator });
+                const story = getRandomStory(eliminatedWrestler, eliminator);
+                eliminated.push({ wrestler: eliminatedWrestler, by: eliminator, story });
                 eliminations[eliminator] += 1;
 
-                document.getElementById("thisRoundEliminated").innerHTML = `<strong>Eliminated this round:</strong> <span class="wrestler-name">${eliminatedWrestler}</span>`;
-                document.getElementById("eliminator").innerHTML = `<strong>Eliminated by:</strong> ${eliminator}`;
-                document.getElementById("eliminator").classList.remove("hidden");
+                document.getElementById("eliminationStory").innerHTML = `<p>${story}</p>`;
+                document.getElementById("eliminationStory").classList.remove("hidden");
                 document.getElementById("ring").innerHTML = `<strong>Wrestlers in the Ring:</strong> ${ring.join(", ")}`;
             }
 
@@ -207,8 +222,9 @@
 
             const statsDiv = document.getElementById("stats");
             let statsHTML = "";
-            for (const { wrestler, by } of eliminated) {
+            for (const { wrestler, by, story } of eliminated) {
                 statsHTML += `<p><span class="wrestler-name">${wrestler}</span> was eliminated by ${by}</p>`;
+                statsHTML += `<p>${story}</p>`;
                 statsHTML += `<p class="elimination-count"><span class="wrestler-name">${wrestler}</span> had ${eliminations[wrestler]} eliminations</p>`;
             }
             if (winner) {
